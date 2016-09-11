@@ -29,5 +29,15 @@ app.get('/',(req,res)=>{
 	})
 })
 
+app.post('/task/add',(req,res)=>{
+	var task = req.body.task;
+	client.rpush('tasks',task,(err,reply)=>{
+		if(err){
+			console.log('err');
+		}
+		res.redirect('/');
+	})
+})
+
 app.listen(3000);
 module.exports =app;
