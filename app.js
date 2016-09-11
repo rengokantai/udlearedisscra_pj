@@ -1,3 +1,4 @@
+"use strict";
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -39,5 +40,22 @@ app.post('/task/add',(req,res)=>{
 	})
 })
 
+app.post('/task/delete',(req,res)=>{
+	var taskTodel = req.body.tasks;
+	client.lrange('tasks',0,-1,(err,reply)=>{
+		if(err){
+			console.log('err');
+		}
+		for(let i=0;i<reply.length;i++){
+			if(taskTodel.indexOf(reply[i])>-1){
+				//refer http://redis.io/commands/lrem
+				client.lrem('tasks',0,reply[i],()=>{
+
+				})
+			}
+		}
+		res.redirect('/');
+	})
+})
 app.listen(3000);
 module.exports =app;
