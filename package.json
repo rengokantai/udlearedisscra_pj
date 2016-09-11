@@ -1,0 +1,27 @@
+{
+  "name": "udlearedisscra_pj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rengokantai/udlearedisscra_pj.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rengokantai/udlearedisscra_pj/issues"
+  },
+  "homepage": "https://github.com/rengokantai/udlearedisscra_pj#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "redis": "^2.6.2"
+  }
+}
