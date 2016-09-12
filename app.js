@@ -7,7 +7,7 @@ var redis = require('redis');
 
 var app = express();
 //the order of parameter is port,host!
-var client = redis.createClient('6379','104.131.77.161');
+var client = redis.createClient(p,h);
 
 client.on('connect',()=>{
 	console.log('t');
