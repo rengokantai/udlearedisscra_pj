@@ -23,10 +23,13 @@ app.use(express.static(path.join(__dirname,'public')));
 app.get('/',(req,res)=>{
 	var title = 'tasks';
 	client.lrange('tasks',0,-1,(err,reply)=>{
-		res.render('index',{
-			title:title,
-			tasks:reply
-		});
+		client.hgetall('call',(err,call)=>{
+				res.render('index',{
+					title:title,
+					tasks:reply,
+					call:call
+				});
+		})
 	})
 })
 
@@ -56,6 +59,21 @@ app.post('/task/delete',(req,res)=>{
 		}
 		res.redirect('/');
 	})
+})
+
+app.post('/call/add',(req,res)=>{
+	var newcall = {};
+	newcall.name = req.body.name;
+	newcall.company = req.body.company;
+	newcall.phone = req.body.phone;
+	newcall.time = req.body.time;
+	//note all params should be comma seperated. not colon
+	client.hmset('call','name',newcall.name,'company',newcall.company,'phone',newcall.phone,'time',newcall.time, (err,reply)=>{
+		if(err){
+			console.log(err);
+		}
+		res.redirect('/');
+	});
 })
 app.listen(3000);
 module.exports =app;
